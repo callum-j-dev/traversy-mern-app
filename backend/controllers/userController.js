@@ -78,8 +78,6 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Invalid credentials');
     }
-
-    res.json({ message: 'Login User' });
 })
 
 // @desc    Get user data
@@ -87,16 +85,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Private
 
 const getMe = asyncHandler(async (req, res) => {
-    // console.log(req.user.id);
-    
-    const { _id, name, email } = await User.findById(req.user.id);
-
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
-    // res.status(200).json(req.user);
+    res.status(200).json(req.user);
 })
 
 // Generate JWT
